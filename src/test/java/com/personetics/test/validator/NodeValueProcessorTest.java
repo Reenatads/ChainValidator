@@ -2,45 +2,48 @@ package com.personetics.test.validator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.personetics.test.model.IntegerNode;
 import com.personetics.test.model.Node;
+import com.personetics.test.model.StringNode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class NodeValueProcessorTest {
+  NodeValueProcessor nodeValueProcessor;
 
-  private static class TestNode<T> extends Node<T> {
-    public TestNode(T value) {
-      super(value);
-    }
+  @BeforeEach
+  public void setUp() {
+    nodeValueProcessor = new NodeValueProcessor();
   }
 
   @Test
   public void testCollectValues_whenValidStringValues_thenAddToSets() {
     List<Node<?>> nodes = new ArrayList<>();
-    nodes.add(new TestNode<>("A"));
-    nodes.add(new TestNode<>("Apple"));
+    nodes.add(new StringNode("A"));
+    nodes.add(new StringNode("Apple"));
 
-    NodeValueProcessor.collectValues(nodes);
+    nodeValueProcessor.collectValues(nodes);
 
-    Set<Character> singleChars = NodeValueProcessor.getSingleChars();
-    Set<String> multiLetterWords = NodeValueProcessor.getMultiLetterWords();
+    Set<Character> singleChars = nodeValueProcessor.getSingleChars();
+    Set<String> multiLetterWords = nodeValueProcessor.getMultiLetterWords();
 
-    assertTrue(singleChars.contains('A'));
-    assertTrue(multiLetterWords.contains("Apple"));
+    assertTrue(singleChars.contains('a'));
+    assertTrue(multiLetterWords.contains("apple"));
   }
 
   @Test
   public void testCollectValues_whenValidIntegerValues_thenAddToSets() {
     List<Node<?>> nodes = new ArrayList<>();
-    nodes.add(new TestNode<>(1));
-    nodes.add(new TestNode<>(10));
+    nodes.add(new IntegerNode(1));
+    nodes.add(new IntegerNode(10));
 
-    NodeValueProcessor.collectValues(nodes);
+    nodeValueProcessor.collectValues(nodes);
 
-    Set<Integer> singleDigits = NodeValueProcessor.getSingleDigits();
-    Set<Integer> validNumbers = NodeValueProcessor.getValidNumbers();
+    Set<Integer> singleDigits = nodeValueProcessor.getSingleDigits();
+    Set<Integer> validNumbers = nodeValueProcessor.getValidNumbers();
 
     assertTrue(singleDigits.contains(1));
     assertTrue(validNumbers.contains(10));
@@ -48,12 +51,12 @@ public class NodeValueProcessorTest {
 
   @Test
   public void testClearSets_whenCalled_thenClearSets() {
-    NodeValueProcessor.getSingleChars().add('A');
-    NodeValueProcessor.getMultiLetterWords().add("Apple");
+    nodeValueProcessor.getSingleChars().add('A');
+    nodeValueProcessor.getMultiLetterWords().add("Apple");
 
-    NodeValueProcessor.clearSets();
+    nodeValueProcessor.clearSets();
 
-    assertTrue(NodeValueProcessor.getSingleChars().isEmpty());
-    assertTrue(NodeValueProcessor.getMultiLetterWords().isEmpty());
+    assertTrue(nodeValueProcessor.getSingleChars().isEmpty());
+    assertTrue(nodeValueProcessor.getMultiLetterWords().isEmpty());
   }
 }

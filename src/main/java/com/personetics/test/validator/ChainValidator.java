@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 /**
  * Validates a list of nodes based on certain criteria. This class provides methods to validate
  * nodes containing different types of values.
+ *
+ * @author Renata dos Santos
  */
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
@@ -26,15 +28,16 @@ public class ChainValidator {
    * @return true if all validation criteria are met, false otherwise
    */
   public boolean validate(List<Node<?>> nodes) {
+    NodeValueProcessor nodeValueProcessor = new NodeValueProcessor();
     try {
-      NodeValueProcessor.collectValues(nodes);
+      nodeValueProcessor.collectValues(nodes);
     } catch (IllegalArgumentException e) {
       return false;
     }
     return validateMultiLetterWords(
-            NodeValueProcessor.getMultiLetterWords(), NodeValueProcessor.getSingleChars())
+            nodeValueProcessor.getMultiLetterWords(), nodeValueProcessor.getSingleChars())
         && validateTwoDigitsNumbers(
-            NodeValueProcessor.getSingleDigits(), NodeValueProcessor.getValidNumbers());
+            nodeValueProcessor.getSingleDigits(), nodeValueProcessor.getValidNumbers());
   }
 
   /**

@@ -1,6 +1,10 @@
 package com.personetics.test.model;
 
-/** Represents a node containing a string value. This class extends the generic Node class. */
+/**
+ * Represents a node containing a string value. This class extends the generic Node class.
+ *
+ * @author Renata dos Santos
+ */
 public class StringNode extends Node<String> {
 
   /**

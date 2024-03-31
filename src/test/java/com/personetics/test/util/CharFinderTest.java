@@ -30,7 +30,6 @@ public class CharFinderTest {
 
   @Test
   public void testFind_whenLowerCaseCharacter_thenReturnTrue() {
-    Set<Character> validSet = new HashSet<>();
     validSet.add('c');
     validSet.add('d');
 

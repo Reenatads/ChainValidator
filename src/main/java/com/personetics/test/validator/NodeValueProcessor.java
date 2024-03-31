@@ -12,22 +12,24 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Processes the values stored in nodes and performs validation. This class collects values from
  * nodes and validates them against certain criteria.
+ *
+ * @author Renata dos Santos
  */
 @Slf4j
 public class NodeValueProcessor {
   @Getter(AccessLevel.PROTECTED)
-  private static final Set<Character> singleChars = new HashSet<>();
+  private final Set<Character> singleChars = new HashSet<>();
 
   @Getter(AccessLevel.PROTECTED)
-  private static final Set<String> multiLetterWords = new HashSet<>();
+  private final Set<String> multiLetterWords = new HashSet<>();
 
   @Getter(AccessLevel.PROTECTED)
-  private static final Set<Integer> singleDigits = new HashSet<>();
+  private final Set<Integer> singleDigits = new HashSet<>();
 
   @Getter(AccessLevel.PROTECTED)
-  private static final Set<Integer> validNumbers = new HashSet<>();
+  private final Set<Integer> validNumbers = new HashSet<>();
 
-  public static void collectValues(List<Node<?>> nodes) throws IllegalArgumentException {
+  public void collectValues(List<Node<?>> nodes) throws IllegalArgumentException {
     clearSets();
     for (Node<?> node : nodes) {
       Object value = node.getValue();
@@ -76,7 +78,7 @@ public class NodeValueProcessor {
     return number >= 10 && number <= 99;
   }
 
-  public static void clearSets() {
+  public void clearSets() {
     singleChars.clear();
     multiLetterWords.clear();
     singleDigits.clear();

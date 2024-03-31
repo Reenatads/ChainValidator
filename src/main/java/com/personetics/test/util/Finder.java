@@ -7,6 +7,7 @@ import java.util.Set;
  * logic for a specific type.
  *
  * @param <T> the type of value to be validated
+ * @author Renata dos Santos
  */
 interface Finder<T> {
 

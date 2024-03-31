@@ -5,6 +5,8 @@ import lombok.Getter;
 /**
  * Represents a generic node holding a value of type T. This class serves as a base for specific
  * types of nodes.
+ *
+ * @author Renata dos Santos
  */
 @Getter
 public abstract class Node<T> {

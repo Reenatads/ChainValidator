@@ -5,6 +5,8 @@ import java.util.Set;
 /**
  * A validator for characters. This class checks if a given character is present in a set of valid
  * characters.
+ *
+ * @author Renata dos Santos
  */
 public class CharFinder implements Finder<Character> {
 

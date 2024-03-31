@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
+/** Provides test data for {@link ChainFinderTest}. */
 public class TestDataGenerator {
 
   public static Stream<Object[]> multiLetterWordsTestData() {
@@ -27,7 +28,6 @@ public class TestDataGenerator {
 
   public static Stream<Object[]> validateTestData() {
     return Stream.of(
-        // Valid integer nodes
         new Object[] {
           List.of(
               new IntegerNode(3),
@@ -39,7 +39,6 @@ public class TestDataGenerator {
               new IntegerNode(9)),
           false
         },
-        // Invalid string nodes
         new Object[] {
           List.of(
               new StringNode("p"),

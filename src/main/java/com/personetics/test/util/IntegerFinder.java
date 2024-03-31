@@ -5,6 +5,8 @@ import java.util.Set;
 /**
  * A validator for integers. This class checks if a given integer consists of digits present in a
  * set of valid digits.
+ *
+ * @author Renata dos Santos
  */
 public class IntegerFinder implements Finder<Integer> {
 
