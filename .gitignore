@@ -1,0 +1,16 @@
+*.bak
+*.class
+*.ear
+*.iml
+*.log
+*.nar
+*.rar
+*.tar.gz
+*.trace
+*.war
+*.zip
+.attach_pid*
+.idea/
+classes/
+out/
+target/
